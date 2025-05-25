@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    protected $table = 'items';
-
     protected $fillable = [
-        'nama_item',
-        'deskripsi',
-        'harga',
-        'gambar'
+        'nama_item', 'harga', 'deskripsi', 'gambar'
     ];
+    
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

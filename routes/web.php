@@ -20,3 +20,10 @@ $router->delete('/items/{id}', 'ItemController@destroy');
 $router->options('{any:.*}', function () {
     return response('', 200);
 });
+
+$router->group(['prefix' => 'cart'], function () use ($router) {
+    $router->get('/', 'CartController@index');
+    $router->post('/add', 'CartController@addToCart');
+    $router->delete('/remove/{cart_id}', 'CartController@removeFromCart');
+    $router->put('/update/{cart_id}', 'CartController@updateQuantity');
+});
